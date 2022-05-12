@@ -55,8 +55,9 @@ def validate_data(values):
     return True
 
 
-# The below code has been intentionally been left commented out and left here for education purposes
-# as it was refactored into the the next function calculate_surplus_data
+# The below code has been intentionally been left commented out and left here 
+# for education purposes.
+# It was refactored into the the next function calculate_surplus_data
 
 # def update_sales_worksheet(data):
 #     """
