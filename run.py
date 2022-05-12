@@ -1,6 +1,5 @@
 import gspread
 from google.oauth2.service_account import Credentials
-from pprint import pprint
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -26,14 +25,14 @@ def get_sales_data():
         print('Data should be six numbers, seperated by commas.')
         print('Example: 10,20,30,40,50,60\n')
 
-        data_str = input('Enter your data here: ')
+        data_str = input('Enter your data here:\n')
         sales_data = data_str.split(",")
         validate_data(sales_data)
 
         if validate_data(sales_data):
             print('Data is valid!')
             break
-    return sales_data     
+    return sales_data
 
 
 def validate_data(values):
@@ -55,7 +54,7 @@ def validate_data(values):
     return True
 
 
-# The below code has been intentionally been left commented out and left here 
+# The below code has been intentionally been left commented out and left here
 # for education purposes.
 # It was refactored into the the next function calculate_surplus_data
 
@@ -91,7 +90,7 @@ def update_worksheet(data, worksheet):
 
 
 def calculate_surplus_data(sales_row):
-    """ 
+    """
     Compare sales with stock and calculate surplus for each item type.
 
     The surplus is defined as the sales figure subtracted from the stock:
@@ -101,7 +100,7 @@ def calculate_surplus_data(sales_row):
     print('calculating surplus data...\n')
     stock = SHEET.worksheet('stock').get_all_values()
     stock_row = stock[-1]
-    
+
     surplus_data = []
     for stock, sales in zip(stock_row, sales_row):
         surplus = int(stock) - sales
@@ -125,7 +124,7 @@ def get_last_5_entries_sales():
 
 
 def calculate_stock_data(data):
-    """ 
+    """
     Calculate the average stock for each item type, adding 10%
     """
     print('Calculating stock data...\n')
@@ -136,7 +135,7 @@ def calculate_stock_data(data):
         average = sum(int_column) / len(int_column)
         stock_num = average * 1.1
         new_stock_data.append(round(stock_num))
-    return new_stock_data  
+    return new_stock_data
 
 
 def main():
